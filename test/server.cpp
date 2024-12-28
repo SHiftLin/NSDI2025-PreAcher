@@ -8,10 +8,10 @@
 #include <workflow/WFFacilities.h>
 #include <workflow/WFTaskFactory.h>
 
-constexpr char CERT_PEM[] = "test/share/cert/localhost.crt";
-constexpr char KEY_PEM[] = "test/share/cert/localhost.key";
-constexpr char ROOT_DIR[] = "test/share/static";
-constexpr char CRYPTO_PEM[] = "test/single_server.pem";
+constexpr char CERT_PEM[] = "../../test/share/cert/localhost.crt";
+constexpr char KEY_PEM[] = "../../test/share/cert/localhost.key";
+constexpr char ROOT_DIR[] = "../../test/share/static";
+constexpr char CRYPTO_PEM[] = "../../test/single_server.pem";
 
 std::map<std::string, PreAcher_server_register_temp> RegistParams;
 

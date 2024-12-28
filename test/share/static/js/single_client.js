@@ -1,6 +1,7 @@
 'use strict'
 import * as util from "./util.js";
 import {ArrayToString, EncryptRSAOAEP, ImportRSAOAEP, StringToArray} from "./util.js";
+import KmerMinHash from "./kmerhash.js";
 
 let sodium;
 const zeroNonce = new Uint8Array(16);
@@ -29,56 +30,13 @@ async function genEnvU_primed(rwd) { // return: ArrayBuffer
     let privU = await util.ExportCryptoKey(keypair.privateKey, true);
     let pubU = await util.ExportCryptoKey(keypair.publicKey, false);
     let envU = await util.EncryptAES(util.StringToArray(privU), await util.ImportAESKey(rwd), zeroNonce);
-    return [pubU, envU];
+    return [btoa(pubU), envU];
 }
 
 async function LSH(password) {
-    const mapping = {
-        '0': 0,
-        '1': 0,
-        '2': 0,
-        '3': 0,
-        '4': 0,
-        '5': 0,
-        '6': 0,
-        '7': 0,
-        '8': 0,
-        '9': 0,
-        'a': 0,
-        'b': 0,
-        'c': 0,
-        'd': 0,
-        'e': 1,
-        'f': 1,
-        'g': 1,
-        'h': 1,
-        'i': 1,
-        'j': 1,
-        'k': 1,
-        'l': 2,
-        'm': 2,
-        'n': 2,
-        'o': 2,
-        'p': 2,
-        'q': 2,
-        'r': 3,
-        's': 3,
-        't': 3,
-        'u': 3,
-        'v': 3,
-        'w': 3,
-        'x': 3,
-        'y': 3,
-        'z': 3
-    };
-    let p = 0;
-    for (let i = 0; i < password.length; i++) {
-        p *= 4;
-        p += mapping[password[i]];
-    }
-    // To hex string
-    p = p.toString(16);
-    return p;
+    const kmerMinHash = new KmerMinHash(5, true, 42);
+    await kmerMinHash.init();
+    return await kmerMinHash.hash(password);
 }
 
 async function EncryptNonceBase64(msg) {
@@ -152,7 +110,7 @@ async function SignHelloInterface(user, signupURL, libsodium) {
 
 async function getKey(envU, rwd) {
     let key_b64 = await util.DecryptAES(envU, await util.ImportAESKey(rwd), zeroNonce);
-    let key = util.StringToArray(atob(util.ArrayToString(key_b64))).buffer;
+    let key = util.StringToArray(util.ArrayToString(key_b64)).buffer;
     return await util.ImportECDSAKey(key, true);
 }
 

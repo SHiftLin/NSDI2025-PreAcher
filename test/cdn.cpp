@@ -7,8 +7,8 @@
 #include <workflow/WFHttpServer.h>
 #include <workflow/WFTaskFactory.h>
 
-constexpr char CERT_PEM[] = "test/share/cert/localhost.crt";
-constexpr char KEY_PEM[] = "test/share/cert/localhost.key";
+constexpr char CERT_PEM[] = "../../test/share/cert/localhost.crt";
+constexpr char KEY_PEM[] = "../../test/share/cert/localhost.key";
 const std::string origin_server = "https://localhost:8080";
 
 using namespace protocol;
