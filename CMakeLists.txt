@@ -18,4 +18,4 @@ add_library(${PROJECT_NAME} STATIC
 target_include_directories(PreAcher PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" cppcodec)
 target_link_libraries(PreAcher sodium ssl crypto cppcodec)
 
-add_subdirectory(test)
+add_subdirectory(test EXCLUDE_FROM_ALL)

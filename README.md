@@ -17,11 +17,22 @@ sudo apt-get install pkg-config libworkflow-dev -y
 
 ### Build
 
-TODO: Add (CMake) building here
+```bash
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+make
+```
+
+`libPreAcher.a` is generated in the `build` directory.
 
 ### Test
 
-TODO: Generate a certificate and test
+There is an RSA private key at `test/single_server.pem`, this key is used for encrypting the password. The corresponding public key is embedded at
+`test/share/static/js/single_client.js::EncryptNonceBase64`.
+
+Before running the test, you need to generate the certificate and key files for the HTTPS server. Ideally, you should use a valid certificate signed by a trusted certificate authority. However, for
+testing purposes, you can generate a self-signed certificate using the following command:
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout localhost.key -out localhost.crt -sha256 -days 3650 -nodes -subj "/"
@@ -29,6 +40,25 @@ openssl req -x509 -newkey rsa:4096 -keyout localhost.key -out localhost.crt -sha
 mv localhost.key test/share/cert/
 mv localhost.crt test/share/cert/
 ```
+
+The test executable can be built by running the following command:
+
+```bash
+cd build
+make cdn server
+```
+
+They will be generated in the `build/test` directory.
+
+Run the server:
+
+```bash
+cd build/test
+./cdn&
+./server&
+```
+
+Visit the website at `https://localhost:8000/index.html` and test the system.
 
 ## :bookmark: Cite US
 
