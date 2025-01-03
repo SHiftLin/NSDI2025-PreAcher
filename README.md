@@ -28,7 +28,7 @@ make
 
 ### Test
 
-There is an RSA private key at `test/single_server.pem`, this key is used for encrypting the password. The corresponding public key is embedded at
+There is an RSA private key at `test/server.pem`, this key is used for encrypting the password. The corresponding public key is embedded at
 `test/share/static/js/single_client.js::EncryptNonceBase64`.
 
 Before running the test, you need to generate the certificate and key files for the HTTPS server. Ideally, you should use a valid certificate signed by a trusted certificate authority. However, for

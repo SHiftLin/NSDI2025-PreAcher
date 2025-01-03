@@ -44,6 +44,7 @@ inline void set_err(protocol::HttpResponse *resp, int status_code) {
 }
 
 inline std::map<std::string, std::string> from_json(const std::string &json) {
+  // std::cerr << json << std::endl;
   std::map<std::string, std::string> result;
   try {
     nlohmann::json jsonObj = nlohmann::json::parse(json);

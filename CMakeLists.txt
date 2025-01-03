@@ -13,7 +13,9 @@ FetchContent_MakeAvailable(cppcodec)
 
 add_library(${PROJECT_NAME} STATIC
         src/PreAcher.cpp
-        src/PreAcher_crypto.cpp)
+        src/PreAcher_crypto.cpp
+        src/DuoHash.cpp
+        src/DuoHash_crypto.cpp)
 
 target_include_directories(PreAcher PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" cppcodec)
 target_link_libraries(PreAcher sodium ssl crypto cppcodec)

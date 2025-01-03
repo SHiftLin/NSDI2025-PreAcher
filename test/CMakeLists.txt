@@ -14,3 +14,11 @@ target_link_libraries(server PreAcher workflow pthread nlohmann_json::nlohmann_j
 add_executable(cdn cdn.cpp)
 target_include_directories(cdn PRIVATE PreAcher cppcodec)
 target_link_libraries(cdn PreAcher workflow pthread nlohmann_json::nlohmann_json cppcodec)
+
+add_executable(hash-server hash-server.cpp)
+target_include_directories(hash-server PRIVATE PreAcher cppcodec)
+target_link_libraries(hash-server PreAcher workflow pthread nlohmann_json::nlohmann_json cppcodec)
+
+add_executable(hash-cdn hash-cdn.cpp)
+target_include_directories(hash-cdn PRIVATE PreAcher cppcodec)
+target_link_libraries(hash-cdn PreAcher workflow pthread nlohmann_json::nlohmann_json cppcodec)

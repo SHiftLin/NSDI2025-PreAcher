@@ -44,10 +44,9 @@ struct PreAcher_server_credential {
 };
 
 struct PreAcher_server_login_network_in {
-  const std::string u{};
   const std::string M{};
 
-  [[nodiscard]] bool invalid() const { return u.empty() || M.empty(); }
+  [[nodiscard]] bool invalid() const { return M.empty(); }
 };
 
 std::tuple<bool, PreAcher_server_register_first_network_out, PreAcher_server_register_temp>

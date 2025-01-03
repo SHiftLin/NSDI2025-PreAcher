@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hash</title>
+</head>
+
+<body>
+<h1>Hash</h1>
+<form id="userForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password"><br>
+    <input type="button" value="Login" id="login-button">
+    <input type="button" value="Register" id="register-button">
+</form>
+<div id="logBox" style="border: 1px solid black; padding: 10px; margin-top: 10px; height: 200px; overflow: auto;"></div>
+</body>
+
+<script type="module">
+    import {LoginInterface, SignupInterface} from "/js/hash_client.js";
+
+    const hash_url = window.location.origin;
+
+    async function submitForm(action) {
+        const form = document.getElementById('userForm');
+        const logBox = document.getElementById('logBox');
+        let user = {
+            username: form.username.value,
+            password: form.password.value
+        };
+
+        let action_fetch;
+        if (action === 'login') {
+            action_fetch = LoginInterface(user, hash_url + "/login");
+        } else if (action === 'register') {
+            action_fetch = SignupInterface(user, hash_url + "/register");
+        }
+        await action_fetch.then(response => {
+            if (response === false) {
+                throw new Error('Invalid request');
+            }
+            return response.text();
+        }).then(data => {
+            logBox.innerHTML += 'Success: ' + data + '<br>';
+        }).catch((error) => {
+            logBox.innerHTML += 'Error: ' + error + '<br>';
+        });
+    }
+
+    document.getElementById('login-button').addEventListener('click', async () => {
+        await submitForm('login');
+    });
+    document.getElementById('register-button').addEventListener('click', async () => {
+        await submitForm('register');
+    });
+</script>
+</html>
