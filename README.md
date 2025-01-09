@@ -1,5 +1,3 @@
-Random Logo here
-
 # PreAcher: Secure and Practical Password Pre-Authentication by Content Delivery Networks
 
 
