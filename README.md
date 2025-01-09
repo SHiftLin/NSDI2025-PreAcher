@@ -63,11 +63,18 @@ Visit the website at `https://localhost:8000/index.html` and test the system.
 Please cite us if this work is helpful to you.
 
 ```
-@inproceedings{name,
-  title={title},
-  author={authors},
-  booktitle={conference},
-  year={2025}
+@inproceedings{DBLP:conf/nsdi/preacher,
+  author       = {Shihan Lin and
+                  Suting Chen and
+                  Yunming Xiao and
+                  Yanqi Gu and
+                  Xiaowei Yang and
+                  Aleksandar Kuzmanovic},
+  title        = {PreAcher: Secure and Practical Password Pre-Authentication by Content Delivery Networks},
+  booktitle    = {22nd {USENIX} Symposium on Networked Systems Design and Implementation,
+                  {NSDI} 2025, Philadelphia, PA, April 28-30, 2025},
+  publisher    = {{USENIX} Association},
+  year         = {2025}
 }
 ```
 
