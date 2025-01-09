@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hash</title>
+    <title>PreAcher</title>
+    <script src="./js/sodium.js" async></script>
 </head>
 
 <body>
-<h1>Hash</h1>
+<h1>PreAcher</h1>
 <form id="userForm">
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
@@ -20,9 +21,9 @@
 </body>
 
 <script type="module">
-    import {LoginInterface, SignupInterface} from "/js/hash_client.js";
+    import {LoginHelloInterface, SignHelloInterface} from "./js/single_client.js";
 
-    const hash_url = window.location.origin;
+    const single_url = window.location.origin;
 
     async function submitForm(action) {
         const form = document.getElementById('userForm');
@@ -34,9 +35,9 @@
 
         let action_fetch;
         if (action === 'login') {
-            action_fetch = LoginInterface(user, hash_url + "/login");
+            action_fetch = LoginHelloInterface(user, single_url + "/login", sodium);
         } else if (action === 'register') {
-            action_fetch = SignupInterface(user, hash_url + "/register");
+            action_fetch = SignHelloInterface(user, single_url + "/register", sodium);
         }
         await action_fetch.then(response => {
             if (response === false) {

@@ -59,7 +59,7 @@ std::string get_mime(const std::string &suffix) {
     return it->second;
 }
 
-FilePath get_filepath(const char *uri, const char *root) {
+FilePath get_filepath(const char *uri, const char *root, const char *default_uri) {
   const char *p = uri;
   while (*p && *p != '?')
     p++;
@@ -67,7 +67,7 @@ FilePath get_filepath(const char *uri, const char *root) {
   fp.root = std::string(root);
   fp.rel_path = std::move(std::string(uri, p - uri));
   if (fp.rel_path.back() == '/')
-    fp.rel_path += "index.html";
+    fp.rel_path += default_uri;
   fp.abs_path = fp.root + fp.rel_path;
   size_t pos = fp.rel_path.find_last_of('.');
   if (pos != std::string::npos)

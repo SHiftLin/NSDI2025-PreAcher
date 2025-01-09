@@ -82,11 +82,10 @@ void process(WFHttpTask *server_task, const char *root) {
 
   const char *uri = req->get_request_uri();
 
-  fprintf(stdout, "Request-URI: %s\n", uri);
-  fflush(stdout);
+  std::cout << "Request-URI: " << uri << std::endl;
 
   if (strcmp(req->get_method(), "GET") == 0) {
-    FilePath fp = get_filepath(uri, root);
+    FilePath fp = get_filepath(uri, root, "duohash.html");
     file_server(server_task, fp);
   } else {
     if (strcmp(uri, "/register") == 0)

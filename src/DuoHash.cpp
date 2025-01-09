@@ -22,8 +22,6 @@ DuoHash_server_register(const DuoHash_server_register_network_in &network) {
   const auto &salt = generate_salt(32);
   const auto &hash = pbkdf2(password.c_str(), password.length(), salt.c_str(), salt.length());
 
-  std::cerr<< LSH_p << std::endl;
-
   const DuoHash_server_register_network_out out{
       .h = to_base64(h_u),
       .s = LSH_salt,

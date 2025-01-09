@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Single-OPRF</title>
-    <script src="./js/sodium.js" async></script>
+    <title>DuoHash</title>
 </head>
 
 <body>
-<h1>Single-OPRF</h1>
+<h1>DuoHash</h1>
 <form id="userForm">
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
@@ -21,9 +20,9 @@
 </body>
 
 <script type="module">
-    import {LoginHelloInterface, SignHelloInterface} from "./js/single_client.js";
+    import {LoginInterface, SignupInterface} from "/js/hash_client.js";
 
-    const single_url = window.location.origin;
+    const hash_url = window.location.origin;
 
     async function submitForm(action) {
         const form = document.getElementById('userForm');
@@ -35,9 +34,9 @@
 
         let action_fetch;
         if (action === 'login') {
-            action_fetch = LoginHelloInterface(user, single_url + "/login", sodium);
+            action_fetch = LoginInterface(user, hash_url + "/login");
         } else if (action === 'register') {
-            action_fetch = SignHelloInterface(user, single_url + "/register", sodium);
+            action_fetch = SignupInterface(user, hash_url + "/register");
         }
         await action_fetch.then(response => {
             if (response === false) {

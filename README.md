@@ -43,7 +43,7 @@ The test executable can be built by running the following command:
 
 ```bash
 cd build
-make cdn server
+make cdn server hash-cdn hash-server
 ```
 
 They will be generated in the `build/test` directory.
@@ -52,11 +52,15 @@ Run the server:
 
 ```bash
 cd build/test
+# For PreAcher
 ./cdn&
 ./server&
+# For DuoHash
+./hash-cdn&
+./hash-server&
 ```
 
-Visit the website at `https://localhost:8000/index.html` and test the system.
+Visit the website at `https://localhost:8000/` and test the system.
 
 ## :bookmark: Cite US
 
