@@ -68,12 +68,7 @@ Please cite us if this work is helpful to you.
 
 ```
 @inproceedings{DBLP:conf/nsdi/preacher,
-  author       = {Shihan Lin and
-                  Suting Chen and
-                  Yunming Xiao and
-                  Yanqi Gu and
-                  Xiaowei Yang and
-                  Aleksandar Kuzmanovic},
+  author       = {Lin, Shihan and Chen, Suting and Xiao, Yunming and Gu, Yanqi and Kuzmanovic, Aleksandar and Yang, Xiaowei},
   title        = {PreAcher: Secure and Practical Password Pre-Authentication by Content Delivery Networks},
   booktitle    = {22nd {USENIX} Symposium on Networked Systems Design and Implementation,
                   {NSDI} 2025, Philadelphia, PA, April 28-30, 2025},
